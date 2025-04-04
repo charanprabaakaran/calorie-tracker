@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from .models import Food, Consume
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login, logout
+from django.contrib.auth.decorators import login_required
 
 @login_required
 def index(request):
@@ -39,3 +42,14 @@ def delete_consume(request, id):
         return redirect('/')
 
     return render(request, 'myapp/delete.html')
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)  # Auto-login after registration
+            return redirect('/')
+    else:
+        form = UserCreationForm()
+    return render(request, 'register.html', {'form': form})
