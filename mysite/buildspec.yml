@@ -8,22 +8,17 @@ phases:
       - pip3 install --upgrade pip
       # Install dependencies needed for running the static analysis
       - pip3 install -r requirements.txt pylint
-      
 
   pre_build:
     commands:
       - python3 --version
       - pylint $CODEBUILD_SRC_DIR/*.py --errors-only
-      #- pylint $CODEBUILD_SRC_DIR/job-portal/*.py --errors-only
+      # - pylint $CODEBUILD_SRC_DIR/job-portal/*.py --errors-only
 
   post_build:
     commands:
       - echo Build completed successfully.
-      - echo Build completed successfully.
-
-      # Add any additional commands for tasks after build (e.g., run migrations, collect static files)
-
 
 artifacts:
   files:
-    - '*/
+    - '**/*'
