@@ -11,6 +11,9 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
+print("==== WSGI starting up ====")  # Debug print
+print("==== SETTINGS_MODULE:", os.getenv("DJANGO_SETTINGS_MODULE"))
+
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings')
 
 application = get_wsgi_application()
