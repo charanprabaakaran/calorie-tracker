@@ -19,6 +19,8 @@ phases:
   post_build:
     commands:
       - echo Build completed successfully.
+      - echo Build completed successfully.
+
       # Add any additional commands for tasks after build (e.g., run migrations, collect static files)
 
 
