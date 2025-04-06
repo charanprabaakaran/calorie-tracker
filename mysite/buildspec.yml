@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.13
+    commands:
+      - pip3 install --upgrade pip
+      # Install dependencies needed for running the static analysis
+      - pip3 install -r requirements.txt pylint
+      
+
+  pre_build:
+    commands:
+      - python3 --version
+      - pylint $CODEBUILD_SRC_DIR/*.py --errors-only
+      #- pylint $CODEBUILD_SRC_DIR/job-portal/*.py --errors-only
+
+artifacts:
+  files:
+    - '*/
