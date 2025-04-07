@@ -8,7 +8,7 @@ phases:
       - pip3 install --upgrade pip
       # Install dependencies needed for running the static analysis
       - pip3 install -r mysite/requirements.txt
-      - pip3 install pylint pytest
+      - pip3 install pylint pytest pytest-django
 
   pre_build:
     commands:
@@ -16,6 +16,12 @@ phases:
       - pylint --exit-zero $CODEBUILD_SRC_DIR/mysite/*.py
       - pylint --exit-zero $CODEBUILD_SRC_DIR/myapp/*.py
       # - pylint $CODEBUILD_SRC_DIR/job-portal/*.py --errors-only
+      
+  build:
+    commands:
+      - echo "🧪 Running Pytest in tests/ directory..."
+      - pytest tests/ --maxfail=5 --disable-warnings --tb=short
+
 
   post_build:
     commands:
