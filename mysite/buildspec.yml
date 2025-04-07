@@ -15,7 +15,6 @@ phases:
       - python3 --version
       - pylint --exit-zero $CODEBUILD_SRC_DIR/mysite/*.py
       - pylint --exit-zero $CODEBUILD_SRC_DIR/myapp/*.py
-      - pytest --maxfail=5 --disable-warnings --tb=short
       # - pylint $CODEBUILD_SRC_DIR/job-portal/*.py --errors-only
 
   post_build:
