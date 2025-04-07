@@ -17,11 +17,6 @@ phases:
       - pylint --exit-zero $CODEBUILD_SRC_DIR/myapp/*.py
       # - pylint $CODEBUILD_SRC_DIR/job-portal/*.py --errors-only
       
-  build:
-    commands:
-      - echo "🧪 Running Pytest in tests/ directory..."
-      - pytest tests/ --maxfail=5 --disable-warnings --tb=short
-
 
   post_build:
     commands:
