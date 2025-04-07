@@ -13,9 +13,8 @@ phases:
   pre_build:
     commands:
       - python3 --version
-      - pylint mysite/*.py
-      - pylint --exit-zero $CODEBUILD_SRC_DIR/tdsystem/*.py
-      - pylint --exit-zero $CODEBUILD_SRC_DIR/tdapp/*.py
+      - pylint --exit-zero $CODEBUILD_SRC_DIR/mysite/*.py
+      - pylint --exit-zero $CODEBUILD_SRC_DIR/myapp/*.py
       - pytest --maxfail=5 --disable-warnings --tb=short
       # - pylint $CODEBUILD_SRC_DIR/job-portal/*.py --errors-only
 
