@@ -8,12 +8,15 @@ phases:
       - pip3 install --upgrade pip
       # Install dependencies needed for running the static analysis
       - pip3 install -r mysite/requirements.txt
-      - pip3 install pylint
+      - pip3 install pylint pytest
 
   pre_build:
     commands:
       - python3 --version
-      - pylint mysite/*.py --errors-only
+      - pylint mysite/*.py
+      - pylint --exit-zero $CODEBUILD_SRC_DIR/tdsystem/*.py
+      - pylint --exit-zero $CODEBUILD_SRC_DIR/tdapp/*.py
+      - pytest --maxfail=5 --disable-warnings --tb=short
       # - pylint $CODEBUILD_SRC_DIR/job-portal/*.py --errors-only
 
   post_build:
